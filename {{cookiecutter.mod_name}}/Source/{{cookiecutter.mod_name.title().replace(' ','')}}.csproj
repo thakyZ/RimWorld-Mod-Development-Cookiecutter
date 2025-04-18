@@ -1,48 +1,38 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D7D21B4A-1DA7-41D8-B202-C58CA8FA62AA}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>{{cookiecutter.mod_name.title().replace(' ','')}}</RootNamespace>
-    <AssemblyName>{{cookiecutter.mod_name.title().replace(' ','')}}</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <Configuration Condition=" '$(Configuration)' == '' ">{{ cookiecutter.supported_versions|last }}</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <TargetFramework>net481</TargetFramework>
+    <RootNamespace>{{ cookiecutter.mod_name.title().replace(' ', '') }}</RootNamespace>
+    <AssemblyName>{{ cookiecutter.mod_name.title().replace(' ', '') }}</AssemblyName>
+    <Configurations>{{ ';'.join(cookiecutter.supported_versions) }}</Configurations>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\Common\Assemblies\</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+
+  <PropertyGroup>
+    <AssemblyTitle>{{ cookiecutter.mod_name.title() }}</AssemblyTitle>
+    <AssemblyDescription>{{ cookiecutter.in_game_description.title().replace('\n', '\\n') }}</AssemblyDescription>
+    <AssemblyProduct>{{ cookiecutter.mod_name.title().replace(' ', '') }}</AssemblyProduct>
+    <AssemblyConfiguration>$(Configuration)</AssemblyConfiguration>
+    <AssemblyCompany>{{ cookiecutter.author }}</AssemblyCompany>
+    <AssemblyCopyright>Copyright © {{% now 'utc', '%Y' %}}</AssemblyCopyright>
+    <AssemblyTrademark></AssemblyTrademark>
+    <AssemblyCulture></AssemblyCulture>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <DebugType>embeded</DebugType>
+    <DebugSymbols>True</DebugSymbols>
+    <Optimize>True</Optimize>
+    <OutputPath>..\$(Configuration)\Assemblies\</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="$(Configuration).*" />
+    <PackageReference Include="Lib.Harmony" Version="2.3.3" ExcludeAssets="runtime" />
     <None Include="..\About\**" />
-    <None Include="..\Common\Defs\**" />
-    <None Include="..\Common\Languages\**" />
-    <None Include="..\Common\Patches\**" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="{{cookiecutter.mod_name.title().replace(' ','')}}.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

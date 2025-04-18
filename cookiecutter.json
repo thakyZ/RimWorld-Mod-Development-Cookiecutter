@@ -1,26 +1,69 @@
 {
-    "mod_name": "Example Mod",
-    "author": "MySteamUsername",
-    "in_game_description": "A short mod description.",
-    "create_empty_definitions": "n",
-	
-	  "_visual_studio": {
-        "mod_name": {
-            "label": "Mod name",
-            "description": "The name of your mod (cannot easily change later)"
-        },
-        "author": {
-            "label": "Author",
-            "description": "Use your Steam username for automatic linking of mod to profile (can change later in About.xml)"
-        },
-        "in_game_description" : {
-            "label": "Mod Description",
-            "description": "The description of the mod as it appears in-game (can change later in About.xml)"
-        },
-        "create_empty_definitions": {
-            "label": "Create blank XML definition files",
-            "description": "Create empty files as templates for your definitions (delete all the rest!)",
-			      "selector": "yesno"
-        }
+  "mod_name": "Example Mod",
+  "author": "MySteamUsername",
+  "github_username_or_organization": ["{{ cookiecutter.author }}", "githubuser"],
+  "github_repository_url": [ "https://github.com/{{ cookiecutter.github_username_or_organization }}/{{ cookiecutter.mod_name.replace(' ','_') }}", "provide later" ],
+  "package_id": "{{ cookiecutter.author.replace(' ','') }}.{{ cookiecutter.mod_name.replace(' ','') }}",
+  "in_game_description": "A short mod description.",
+  "create_empty_definitions": "n",
+  "supported_versions": ["1.0", "1.1", "1.2", "1.3", "1.4", "1.5"],
+  "license": [ "BSD-3", "MIT", "Mozilla Public License 2.0", "Apache Software License 2.0", "GNU LGPL v3.0", "GNU GPL v3.0" ],
+  "_project_uuid": "{{ uuid4() }}",
+  "_solution_uuid": "{{ uuid4() }}",
+  "_extensions": ["cookiecutter.extensions.UUIDExtension", "jinja2_time.TimeExtension"],
+  "_visual_studio": {
+    "mod_name": {
+      "label": "Mod name",
+      "description": "The name of your mod (cannot easily change later)"
+    },
+    "author": {
+      "label": "Author",
+      "description": "Use your Steam username for automatic linking of mod to profile (can change later in About.xml)"
+    },
+    "github_username_or_organization": {
+      "label": "Git Username or Organization",
+      "description": ""
+    },
+    "github_repository_url": {
+      "label": "Git Repository Url",
+      "description": ""
+    },
+    "package_id": {
+      "label": "Package ID",
+      "description": "The package id for the mod. (can change later in About.xml)"
+    },
+    "in_game_description" : {
+      "label": "Mod Description",
+      "description": "The description of the mod as it appears in-game (can change later in About.xml)"
+    },
+    "create_empty_definitions": {
+      "label": "Create blank XML definition files",
+      "description": "Create empty files as templates for your definitions (delete all the rest!)",
+      "selector": "yesno"
+    },
+    "supported_versions": {
+      "label": "Supported Versions",
+      "description": "Which versions would you like to support?",
+      "selector": "list"
     }
+  },
+  "__prompts__": {
+    "mod_name": "The name of your mod (cannot easily change later)",
+    "author": "Use your Steam username for automatic linking of mod to profile (can change later in About.xml)",
+    "github_username_or_organization": "",
+    "github_repository_url": "",
+    "package_id": "The package id for the mod. (can change later in About.xml)",
+    "in_game_description": "The description of the mod as it appears in-game (can change later in About.xml)",
+    "create_empty_definitions": "Short description",
+    "github_username": "Create empty files as templates for your definitions (delete all the rest!)",
+    "supported_versions": {
+      "__prompt__": "Which versions would you like to support?",
+      "1.0": "RimWorld 1.0 (Initial Release)",
+      "1.1": "RimWorld 1.1 (Royalty)",
+      "1.2": "RimWorld 1.2 (No DLCs)",
+      "1.3": "RimWorld 1.3 (Ideology)",
+      "1.4": "RimWorld 1.4 (BioTech)",
+      "1.5": "RimWorld 1.5 (Anomaly)"
+    }
+  }
 }

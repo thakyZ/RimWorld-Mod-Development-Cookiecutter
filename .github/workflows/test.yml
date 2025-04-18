@@ -1,0 +1,57 @@
+name: Test cookiecutter
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: ${{ matrix.platform }} py${{ matrix.python-version }}
+    runs-on: ${{ matrix.platform }}
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.12"]
+        dotnet-version: ["9.x"]
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: cookiecutter
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: true
+
+      - name: Install python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install cookiecutter
+
+      - name: Set up dotNet ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+          cache: true
+
+      - name: Test
+        shell: pwsh
+        run: |
+          $JsonFile = (Get-Content -LiteralPath './.github/tests/replay.json' | ConvertFrom-Json -Depth 100 -AsHashtable);
+          cookiecutter cookiecutter/ --replay-file './.github/tests/replay.json';
+
+          If (-not (Test-Path -LiteralPath (Join-Path -Path $PWD -ChildPath $JsonFile.cookiecutter.mod_name))) {
+            Throw "Failed to create cookiecutter template with name $($JsonFile.cookiecutter.mod_name)";
+          }
+
+          ForEach ($SupportedVersion in $JsonFile.cookiecutter.supported_versions) {
+            dotnet build "./$("$((Get-Culture).TextInfo.ToTitleCase("$($JsonFile.cookiecutter.mod_name)")" -replace ' ','')" -c "$($SupportedVersion)";
+          }

@@ -18,7 +18,7 @@ ALL_LOAD_FOLDERS = [
 {% endfor %}
 ]
 
-def remove_temp_folders(load_folders: list[str]) -> None:
+def make_load_folders(load_folders: list[str]) -> None:
     for load_folder in load_folders:
         copytree(Path(PROJECT_DIRECTORY, "..", "hooks/load_folder_template"), Path(PROJECT_DIRECTORY, f"{load_folder}"))
 

@@ -13,8 +13,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 	{% for version in cookiecutter.supported_versions -%}
-		{{{ _project_uuid }}}.{{ version }}|x64.ActiveCfg = {{ version }}|x64
-		{{{ _project_uuid }}}.{{ version }}|x64.Build.0 = {{ version }}|x64
+		{{{ cookiecutter._project_uuid }}}.{{ version }}|x64.ActiveCfg = {{ version }}|x64
+		{{{ cookiecutter._project_uuid }}}.{{ version }}|x64.Build.0 = {{ version }}|x64
 	{% endfor -%}
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution

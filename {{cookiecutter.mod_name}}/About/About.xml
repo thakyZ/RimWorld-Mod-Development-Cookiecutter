@@ -4,7 +4,7 @@
   <author>{{ cookiecutter.author }}</author>
   <packageId>{{ cookiecutter.package_id }}</packageId>
   <supportedVersions>
-  {{% for supported_version in cookiecutter.supported_versions %}}
+  {% for supported_version in cookiecutter.supported_versions %}
     <li>{{ supported_version }}</li>
   {% endfor %}
   </supportedVersions>

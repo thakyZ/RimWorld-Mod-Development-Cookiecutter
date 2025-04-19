@@ -7,6 +7,8 @@
     <RootNamespace>{{ cookiecutter.mod_name.title().replace(' ', '') }}</RootNamespace>
     <AssemblyName>{{ cookiecutter.mod_name.title().replace(' ', '') }}</AssemblyName>
     <Configurations>{{ ';'.join(cookiecutter.supported_versions) }}</Configurations>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -15,7 +17,7 @@
     <AssemblyProduct>{{ cookiecutter.mod_name.title().replace(' ', '') }}</AssemblyProduct>
     <AssemblyConfiguration>$(Configuration)</AssemblyConfiguration>
     <AssemblyCompany>{{ cookiecutter.author }}</AssemblyCompany>
-    <AssemblyCopyright>Copyright © {{% now 'utc', '%Y' %}}</AssemblyCopyright>
+    <AssemblyCopyright>Copyright © {% now 'utc', '%Y' %}</AssemblyCopyright>
     <AssemblyTrademark></AssemblyTrademark>
     <AssemblyCulture></AssemblyCulture>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>

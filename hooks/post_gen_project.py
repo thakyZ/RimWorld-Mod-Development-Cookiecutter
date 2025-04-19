@@ -7,7 +7,7 @@ from shutil import copytree
 from pathlib import Path
 from subprocess import run
 
-basicConfig(level=NFO)
+basicConfig(level=INFO)
 logger = getLogger("post_gen_project")
 
 PROJECT_DIRECTORY = realpath(curdir)

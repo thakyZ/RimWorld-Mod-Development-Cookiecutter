@@ -1,8 +1,9 @@
 {
   "mod_name": "Example Mod",
   "author": "MySteamUsername",
-  "github_username_or_organization": ["{{ cookiecutter.author }}", "githubuser"],
-  "github_repository_url": [ "https://github.com/{{ cookiecutter.github_username_or_organization }}/{{ cookiecutter.mod_name.replace(' ','_') }}", "provide later" ],
+  "full_name": "Display Name",
+  "github_username_or_organization": "githubuser",
+  "github_repository_url": "https://github.com/{{ cookiecutter.github_username_or_organization }}/{{ cookiecutter.mod_name.replace(' ','_') }}",
   "package_id": "{{ cookiecutter.author.replace(' ','') }}.{{ cookiecutter.mod_name.replace(' ','') }}",
   "in_game_description": "A short mod description.",
   "create_empty_definitions": "n",
@@ -54,7 +55,7 @@
     "github_repository_url": "",
     "package_id": "The package id for the mod. (can change later in About.xml)",
     "in_game_description": "The description of the mod as it appears in-game (can change later in About.xml)",
-    "create_empty_definitions": "Short description",
+    "create_empty_definitions": "Create empty files as templates for your definitions (delete all the rest!)",
     "github_username": "Create empty files as templates for your definitions (delete all the rest!)",
     "supported_versions": {
       "__prompt__": "Which versions would you like to support?",

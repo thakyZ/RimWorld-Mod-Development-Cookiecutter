@@ -3,7 +3,7 @@
 
 from logging import INFO, basicConfig, getLogger
 from os.path import realpath, curdir
-from shutil import copytree
+from shutil import copytree, rmtree
 from pathlib import Path
 from subprocess import run
 
@@ -12,11 +12,7 @@ logger = getLogger("post_gen_project")
 
 PROJECT_DIRECTORY = realpath(curdir)
 ALL_TEMP_FOLDERS = ["licenses","load_folder_template"]
-ALL_LOAD_FOLDERS = [
-{% for supported_version in cookiecutter.supported_versions %}
-    "{{ supported_version }}",
-{% endfor %}
-]
+ALL_LOAD_FOLDERS = ["{{ cookiecutter.supported_versions }}"]
 
 def make_load_folders(load_folders: list[str]) -> None:
     for load_folder in load_folders:
@@ -26,12 +22,12 @@ def make_load_folders(load_folders: list[str]) -> None:
 def remove_temp_folders(temp_folders: list[str]) -> None:
     for folder in temp_folders:
         logger.debug("Remove temporary folder: %s", folder)
-        shutil.rmtree(folder, ignore_errors=True)
+        rmtree(folder, ignore_errors=True)
 
 if __name__ == "__main__":
     make_load_folders(ALL_LOAD_FOLDERS)
     remove_temp_folders(ALL_TEMP_FOLDERS)
-
+    msg = ""
     # try to run git init
     try:
         run(["git", "init", "-q"])

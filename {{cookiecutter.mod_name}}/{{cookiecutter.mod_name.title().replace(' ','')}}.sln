@@ -3,24 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 17
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "{{ cookiecutter.mod_name.title().replace(' ','') }}", "Source\{{ cookiecutter.mod_name.title().replace(' ','') }}.csproj", "{{{ cookiecutter._project_uuid }}}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "{{ cookiecutter.mod_name,title().replace(' ','') }}", "Source\\{{ cookiecutter.mod_name.title().replace(' ','') }}.csproj", "\{{{ cookiecutter._project_uuid }}\}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-	{% for version in cookiecutter.supported_versions -%}
+	{% for version in cookiecutter.supported_versions %}
 		{{ version }}|x64 = {{ version }}|x64
 	{% endfor -%}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-	{% for version in cookiecutter.supported_versions -%}
-		{{{ cookiecutter._project_uuid }}}.{{ version }}|x64.ActiveCfg = {{ version }}|x64
-		{{{ cookiecutter._project_uuid }}}.{{ version }}|x64.Build.0 = {{ version }}|x64
+	{% for version in cookiecutter.supported_versions %}
+		\{{{ cookiecutter._project_uuid }}\}.{{ version }}|x64.ActiveCfg = {{ version }}|x64
+		\{{{ cookiecutter._project_uuid }}\}.{{ version }}|x64.Build.0 = {{ version }}|x64
 	{% endfor -%}
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {{{ cookiecutter._solution_uuid }}}
+		SolutionGuid = \{{{ cookiecutter._solution_uuid }}\}
 	EndGlobalSection
 EndGlobal

@@ -11,7 +11,7 @@ basicConfig(level=INFO)
 logger = getLogger("post_gen_project")
 
 PROJECT_DIRECTORY = realpath(curdir)
-ALL_TEMP_FOLDERS = ["licenses"]
+ALL_TEMP_FOLDERS = ["licenses","load_folder_template"]
 ALL_LOAD_FOLDERS = [
 {% for supported_version in cookiecutter.supported_versions %}
     "{{ supported_version }}",
@@ -20,7 +20,7 @@ ALL_LOAD_FOLDERS = [
 
 def make_load_folders(load_folders: list[str]) -> None:
     for load_folder in load_folders:
-        copytree(Path(PROJECT_DIRECTORY, "..", "hooks/load_folder_template"), Path(PROJECT_DIRECTORY, f"{load_folder}"))
+        copytree(Path(PROJECT_DIRECTORY, "load_folder_template"), Path(PROJECT_DIRECTORY, f"{load_folder}"))
 
 
 def remove_temp_folders(temp_folders: list[str]) -> None:

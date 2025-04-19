@@ -12,7 +12,7 @@ public class {{ cookiecutter.mod_name.title().replace(' ','') }} : Mod
     public {{ cookiecutter.mod_name.title().replace(' ','') }}(ModContentPack content) : base(content)
     {
         settings = GetSettings<{{ cookiecutter.mod_name.title().replace(' ','') }}Settings>();
-        harmony = new("{{ cookiecutter.mod_package_id }}");
+        harmony = new("{{ cookiecutter.package_id }}");
         harmony.PatchAll();
     }
 

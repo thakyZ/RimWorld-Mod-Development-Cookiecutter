@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "*.cs": "jinja",
+    "*.csproj": "jinja",
+    "*.sln": "jinja",
+    "*.xml": "jinja",
+  }
+}

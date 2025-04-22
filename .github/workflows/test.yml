@@ -11,24 +11,22 @@ on:
 
 jobs:
   test:
-    name: ${{ matrix.platform }} py${{ matrix.python-version }}
+    name: ${{ matrix.platform }} py3.12 dotNET 9.x
     runs-on: ${{ matrix.platform }}
     strategy:
       fail-fast: false
       matrix:
         platform: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: ["3.12"]
-        dotnet-version: ["9.x"]
 
     steps:
       - uses: actions/checkout@v4
         with:
           path: cookiecutter
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.12
           cache: true
 
       - name: Install python dependencies
@@ -36,10 +34,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install cookiecutter
 
-      - name: Set up dotNet ${{ matrix.dotnet-version }}
+      - name: Set up dotNet 9.x
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: ${{ matrix.dotnet-version }}
+          dotnet-version: 9.x
           cache: true
 
       - name: Test

@@ -1,7 +1,7 @@
 <loadFolders>
-{% for version in cookiecutter.supported_versions %}
-  <v{{ version }}>
-    <li>{{ version }}</li>
-  </v{{ version }}>
+{% for supported_version in cookiecutter.supported_versions.split(',') %}
+  <v{{ supported_version }}>
+    <li>{{ supported_version }}</li>
+  </v{{ supported_version }}>
 {% endfor %}
 </loadFolders>

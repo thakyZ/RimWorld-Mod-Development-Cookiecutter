@@ -1,13 +1,13 @@
 {
   "cookiecutter": {
     "mod_name": "Example Mod",
-    "author": "example",
-    "github_username_or_organization": "thakyZ",
-    "github_repository_url": "https://github.com/{{ cookiecutter.github_username_or_organization }}/{{ cookiecutter.mod_name.replace(' ','_') }}",
-    "package_id": "{{ cookiecutter.author.replace(' ','') }}.{{ cookiecutter.mod_name.replace(' ','') }}",
+    "authors": "Neko Boi Nick,SomeoneElse",
+    "git_username_or_organization": "thakyZ",
+    "git_repository_url": "https://github.com/{{ cookiecutter.git_username_or_organization }}/RimWorld-{{ cookiecutter.mod_name.replace(' ','_') }}",
+    "package_id": "{{ cookiecutter.authors.split(',').first().replace(' ','') }}.{{ cookiecutter.mod_name.replace(' ','') }}",
     "in_game_description": "A short mod description.",
-    "create_empty_definitions": "n",
-    "supported_versions": ["1.0", "1.1", "1.2", "1.3", "1.4", "1.5"],
+    "create_empty_definitions": "y",
+    "supported_versions": "1.0,1.1,1.2,1.3,1.4,1.5",
     "license": "MIT"
   }
 }

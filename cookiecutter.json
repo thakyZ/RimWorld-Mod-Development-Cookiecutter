@@ -1,33 +1,34 @@
 {
   "mod_name": "Example Mod",
-  "author": "MySteamUsername",
-  "full_name": "Display Name",
-  "github_username_or_organization": "githubuser",
-  "github_repository_url": "https://github.com/{{ cookiecutter.github_username_or_organization }}/{{ cookiecutter.mod_name.replace(' ','_') }}",
+  "authors": "MyUserName,OtherUserName",
+  "author_full_name": "MyDisplayName",
+  "git_username_or_organization": "githubuser",
+  "git_repository_url": "https://github.com/{{ cookiecutter.git_username_or_organization }}/RimWorld-{{ cookiecutter.mod_name.replace(' ','_') }}",
   "package_id": "{{ cookiecutter.author.replace(' ','') }}.{{ cookiecutter.mod_name.replace(' ','') }}",
   "in_game_description": "A short mod description.",
   "create_empty_definitions": "n",
-  "supported_versions": ["1.0", "1.1", "1.2", "1.3", "1.4", "1.5"],
+  "supported_versions": "1.0,1.1,1.2,1.3,1.4,1.5",
   "license": [ "BSD-3", "MIT", "Mozilla Public License 2.0", "Apache Software License 2.0", "GNU LGPL v3.0", "GNU GPL v3.0" ],
-  "_project_uuid": "{{ uuid4() }}",
-  "_solution_uuid": "{{ uuid4() }}",
   "_extensions": ["cookiecutter.extensions.UUIDExtension", "jinja2_time.TimeExtension"],
+  "project_uuid": "{{ uuid4() }}",
+  "solution_uuid": "{{ uuid4() }}",
+  "solution_folder_uuid": "{{ uuid4() }}",
   "_visual_studio": {
     "mod_name": {
       "label": "Mod name",
       "description": "The name of your mod (cannot easily change later)"
     },
-    "author": {
-      "label": "Author",
-      "description": "Use your Steam username for automatic linking of mod to profile (can change later in About.xml)"
+    "authors": {
+      "label": "Authors",
+      "description": "A comma seprated list of the authors."
     },
-    "github_username_or_organization": {
+    "git_username_or_organization": {
       "label": "Git Username or Organization",
-      "description": ""
+      "description": "The username or organization name of the user owning the git repository"
     },
-    "github_repository_url": {
+    "git_repository_url": {
       "label": "Git Repository Url",
-      "description": ""
+      "description": "The url for the git repository of this mod."
     },
     "package_id": {
       "label": "Package ID",
@@ -44,27 +45,31 @@
     },
     "supported_versions": {
       "label": "Supported Versions",
-      "description": "Which versions would you like to support?",
+      "description": "Which versions would you like to support (Use a comma seprated list)?"
+    },
+    "license": {
+      "label": "License",
+      "description": "Which license covers your mod?",
       "selector": "list"
     }
   },
   "__prompts__": {
     "mod_name": "The name of your mod (cannot easily change later)",
-    "author": "Use your Steam username for automatic linking of mod to profile (can change later in About.xml)",
-    "github_username_or_organization": "",
-    "github_repository_url": "",
+    "authors": "A comma seprated list of the authors.",
+    "git_username_or_organization": "The username or organization name of the user owning the git repository",
+    "git_repository_url": "The url for the git repository of this mod.",
     "package_id": "The package id for the mod. (can change later in About.xml)",
     "in_game_description": "The description of the mod as it appears in-game (can change later in About.xml)",
     "create_empty_definitions": "Create empty files as templates for your definitions (delete all the rest!)",
-    "github_username": "Create empty files as templates for your definitions (delete all the rest!)",
-    "supported_versions": {
-      "__prompt__": "Which versions would you like to support?",
-      "1.0": "RimWorld 1.0 (Initial Release)",
-      "1.1": "RimWorld 1.1 (Royalty)",
-      "1.2": "RimWorld 1.2 (No DLCs)",
-      "1.3": "RimWorld 1.3 (Ideology)",
-      "1.4": "RimWorld 1.4 (BioTech)",
-      "1.5": "RimWorld 1.5 (Anomaly)"
+    "supported_versions": "Which versions would you like to support (Use a comma seprated list)?",
+    "license": {
+      "__prompt__": "Which license covers your mod?",
+      "BSD-3": "",
+      "MIT": "",
+      "Mozilla Public License 2.0": "",
+      "Apache Software License 2.0": "",
+      "GNU LGPL v3.0": "",
+      "GNU GPL v3.0": ""
     }
   }
 }

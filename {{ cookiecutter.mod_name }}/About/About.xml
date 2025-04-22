@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>{{ cookiecutter.mod_name }}</name>
-  <author>{{ cookiecutter.author }}</author>
+  <authors>{{ cookiecutter.authors }}</authors>
   <packageId>{{ cookiecutter.package_id }}</packageId>
   <supportedVersions>
   {% for supported_version in cookiecutter.supported_versions %}
@@ -13,5 +13,5 @@
 	  {{ cookiecutter.in_game_description }}
 	  ]]>
   </description>
-  <url>https://steamcommunity.com/id/{{ cookiecutter.author }}/myworkshopfiles/?appid=294100</url>
+  <url>https://steamcommunity.com/id/{{ cookiecutter.authors }}/myworkshopfiles/?appid=294100</url>
 </ModMetaData>

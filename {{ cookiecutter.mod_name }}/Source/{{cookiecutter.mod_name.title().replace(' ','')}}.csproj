@@ -1,22 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">{{ cookiecutter.supported_versions|last }}</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">{{ cookiecutter.supported_versions.split(',').last() }}</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
     <TargetFramework>net481</TargetFramework>
-    <RootNamespace>{{ cookiecutter.mod_name.title().replace(' ', '') }}</RootNamespace>
-    <AssemblyName>{{ cookiecutter.mod_name.title().replace(' ', '') }}</AssemblyName>
-    <Configurations>{{ ';'.join(cookiecutter.supported_versions) }}</Configurations>
+    <RootNamespace>{{ cookiecutter.mod_name.replace('-','_').replace(' ', '') }}</RootNamespace>
+    <AssemblyName>{{ cookiecutter.mod_name.replace('-','_').replace(' ', '') }}</AssemblyName>
+    <Configurations>{{ ';'.join(cookiecutter.supported_versions.split(',')) }}</Configurations>
+    <Platforms>x64</Platforms>
     <Nullable>enable</Nullable>
     <LangVersion>preview</LangVersion>
+    <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <PropertyGroup>
-    <AssemblyTitle>{{ cookiecutter.mod_name.title() }}</AssemblyTitle>
-    <AssemblyDescription>{{ cookiecutter.in_game_description.title().replace('\n', '\\n') }}</AssemblyDescription>
-    <AssemblyProduct>{{ cookiecutter.mod_name.title().replace(' ', '') }}</AssemblyProduct>
+    <AssemblyTitle>{{ cookiecutter.mod_name }}</AssemblyTitle>
+    <AssemblyDescription>{{ cookiecutter.in_game_description.replace('\n', '\\n') }}</AssemblyDescription>
+    <AssemblyProduct>{{ cookiecutter.mod_name.replace('-','_').replace(' ', '') }}</AssemblyProduct>
     <AssemblyConfiguration>$(Configuration)</AssemblyConfiguration>
-    <AssemblyCompany>{{ cookiecutter.author }}</AssemblyCompany>
+    <AssemblyCompany>{{ cookiecutter.authors }}</AssemblyCompany>
     <AssemblyCopyright>Copyright © {% now 'utc', '%Y' %}</AssemblyCopyright>
     <AssemblyTrademark></AssemblyTrademark>
     <AssemblyCulture></AssemblyCulture>

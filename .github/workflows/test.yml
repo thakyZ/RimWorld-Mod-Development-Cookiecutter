@@ -48,10 +48,10 @@ jobs:
           $JsonFile = (Get-Content -LiteralPath './.github/tests/replay.json' | ConvertFrom-Json -Depth 100 -AsHashtable);
           cookiecutter cookiecutter/ --replay-file './.github/tests/replay.json';
 
-          If (-not (Test-Path -LiteralPath (Join-Path -Path $PWD -ChildPath $JsonFile.cookiecutter.mod_name))) {
+          If (-not (Test-Path -LiteralPath (Join-Path -Path $PWD -ChildPath "RimWorld-$($JsonFile.cookiecutter.mod_name -replace ' ','_')"))) {
             Throw "Failed to create cookiecutter template with name $($JsonFile.cookiecutter.mod_name)";
           }
 
-          ForEach ($SupportedVersion in $JsonFile.cookiecutter.supported_versions) {
-            dotnet build "./$("$((Get-Culture).TextInfo.ToTitleCase("$($JsonFile.cookiecutter.mod_name)")" -replace ' ','')" -c "$($SupportedVersion)";
+          ForEach ($SupportedVersion in ($JsonFile.cookiecutter.supported_versions -split ',')) {
+            dotnet build "./RimWorld-$($JsonFile.cookiecutter.mod_name -replace ' ','_')" -replace ' ','')" -c "$($SupportedVersion.Trim())";
           }

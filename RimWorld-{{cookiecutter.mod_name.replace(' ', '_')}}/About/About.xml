@@ -5,7 +5,7 @@
   <packageId>{{ cookiecutter.package_id }}</packageId>
   <supportedVersions>
   {% for supported_version in cookiecutter.supported_versions.split(',') %}
-    <li>{{ supported_version.trim() }}</li>
+    <li>{{ supported_version }}</li>
   {% endfor %}
   </supportedVersions>
   <description>{{ cookiecutter.in_game_description }}</description>

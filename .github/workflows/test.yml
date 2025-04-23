@@ -49,5 +49,5 @@ jobs:
           }
 
           ForEach ($SupportedVersion in ($JsonFile.cookiecutter.supported_versions -split ',')) {
-            dotnet build "./RimWorld-$($JsonFile.cookiecutter.mod_name -replace ' ','_')" -replace ' ','')" -c "$($SupportedVersion.Trim())";
+            dotnet build "./RimWorld-$($JsonFile.cookiecutter.mod_name -replace ' ','_')" -c "$($SupportedVersion.Trim())";
           }

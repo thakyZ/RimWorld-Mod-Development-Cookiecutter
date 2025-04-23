@@ -2,12 +2,16 @@
   "cookiecutter": {
     "mod_name": "Example Mod",
     "authors": "Neko Boi Nick,SomeoneElse",
+    "author_full_name": "Neko Boi Nick",
     "git_username_or_organization": "thakyZ",
     "git_repository_url": "https://github.com/{{ cookiecutter.git_username_or_organization }}/RimWorld-{{ cookiecutter.mod_name.replace(' ','_') }}",
     "package_id": "{{ cookiecutter.authors.split(',').first().replace(' ','') }}.{{ cookiecutter.mod_name.replace(' ','') }}",
     "in_game_description": "A short mod description.",
     "create_empty_definitions": "y",
     "supported_versions": "1.0,1.1,1.2,1.3,1.4,1.5",
-    "license": "MIT"
+    "license": "MIT",
+    "project_uuid": "d70241bc-288d-443f-96c1-f3f626219b30",
+    "solution_uuid": "c309592d-0ded-4fee-a761-14a800a5ef81",
+    "solution_folder_uuid": "f110b736-315f-4f65-bed6-88dc9e078897"
   }
 }

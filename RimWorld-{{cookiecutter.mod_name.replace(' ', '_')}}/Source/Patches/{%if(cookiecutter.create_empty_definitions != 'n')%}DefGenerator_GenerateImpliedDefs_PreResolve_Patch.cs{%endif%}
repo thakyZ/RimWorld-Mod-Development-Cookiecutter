@@ -1,0 +1,17 @@
+using System.Collections.Generic;
+using System.Linq;
+using HarmonyLib;
+using Verse;
+using RimWorld;
+namespace {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Patches;
+[HarmonyPatch(typeof(DefGenerator), nameof(DefGenerator.GenerateImpliedDefs_PreResolve))]
+public static class DefGenerator_GenerateImpliedDefs_PreResolve_Patch
+{
+    public static void Postfix(bool hotReload)
+    {
+        foreach (ThingCategoryDef thingCategoryDef in ThingCategoryDefGenerator_AThing.ImpliedThingCategoryDefs(hotReload))
+        {
+            DefGenerator.AddImpliedDef(thingCategoryDef, hotReload);
+        }
+    }
+}

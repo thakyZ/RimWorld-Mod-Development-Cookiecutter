@@ -1,1 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Thing_{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.label>A Thing</Thing_{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.label>
+  <Thing_{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.description>Some kind of thing.</Thing_{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.description>
+</LanguageData>

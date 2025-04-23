@@ -1,0 +1,13 @@
+#nullable disable
+#pragma warning disable IDE1006 // Naming Styles --- Overridden because DefOf requires exact names
+using RimWorld;
+using Verse;
+namespace {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }};
+[DefOf]
+public static class {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}DefOf
+{
+    public static ThingCategoryDef AThing;
+
+    static {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}DefOf()
+      => DefOfHelper.EnsureInitializedInCtor(typeof(ThingCategoryDefOf));
+}

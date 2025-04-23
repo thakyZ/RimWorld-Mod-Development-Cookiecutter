@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">{{ cookiecutter.supported_versions.split(',').last() }}</Configuration>
@@ -11,29 +11,30 @@
     <Nullable>enable</Nullable>
     <LangVersion>preview</LangVersion>
     <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
+    <NoWarn>$(NoWarn);MSB3052</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>
     <AssemblyTitle>{{ cookiecutter.mod_name }}</AssemblyTitle>
-    <AssemblyDescription>{{ cookiecutter.in_game_description.replace('\n', '\\n') }}</AssemblyDescription>
-    <AssemblyProduct>{{ cookiecutter.mod_name.replace('-','_').replace(' ', '') }}</AssemblyProduct>
-    <AssemblyConfiguration>$(Configuration)</AssemblyConfiguration>
-    <AssemblyCompany>{{ cookiecutter.authors }}</AssemblyCompany>
-    <AssemblyCopyright>Copyright © {% now 'utc', '%Y' %}</AssemblyCopyright>
-    <AssemblyTrademark></AssemblyTrademark>
-    <AssemblyCulture></AssemblyCulture>
+    <Description>{{ cookiecutter.in_game_description.replace('\n', '\\n') }}</Description>
+    <Product>$(AssemblyName)</Product>
+    <Company>{{ cookiecutter.git_username_or_organization }}</Company>
+    <Copyright>Copyright © {% now 'utc', '%Y' %}</Copyright>
+    <Trademark></Trademark>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>
+    <FileVersion>$(AssemblyVersion)</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup>
-    <DebugType>embeded</DebugType>
+    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+    <DebugType>embedded</DebugType>
     <DebugSymbols>True</DebugSymbols>
     <Optimize>True</Optimize>
     <OutputPath>..\$(Configuration)\Assemblies\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Hafner.Compatibility.NullableReferenceTypeAttributes" Version="1.0.0" ExcludeAssets="runtime" />
     <PackageReference Include="Krafs.Rimworld.Ref" Version="$(Configuration).*" />
     <PackageReference Include="Lib.Harmony" Version="2.3.3" ExcludeAssets="runtime" />
     <None Include="..\About\**" />

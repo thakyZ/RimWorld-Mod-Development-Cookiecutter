@@ -1,1 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Settings.Title>{{ cookiecutter.mod_name }}</{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Settings.Title>
+  <{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Settings.Debug>Debug</{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Settings.Debug>
+</LanguageData>

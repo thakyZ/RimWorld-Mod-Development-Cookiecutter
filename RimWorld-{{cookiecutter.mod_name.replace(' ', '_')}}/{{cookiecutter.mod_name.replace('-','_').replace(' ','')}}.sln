@@ -18,8 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 	{% for supported_version in cookiecutter.supported_versions.split(',') %}
-		{{ '{' }}{{ cookiecutter.project_uuid }}{{ '}' }}.{{ supported_version }}|x64.ActiveCfg = {{ cookiecutter.supported_version.upper() }}|x64
-		{{ '{' }}{{ cookiecutter.project_uuid }}{{ '}' }}.{{ supported_version }}|x64.Build.0 = {{ cookiecutter.supported_version.upper() }}|x64
+		{{ '{' }}{{ cookiecutter.project_uuid }}{{ '}' }}.{{ supported_version }}|x64.ActiveCfg = {{ supported_version.upper() }}|x64
+		{{ '{' }}{{ cookiecutter.project_uuid }}{{ '}' }}.{{ supported_version }}|x64.Build.0 = {{ supported_version.upper() }}|x64
 	{% endfor %}
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution

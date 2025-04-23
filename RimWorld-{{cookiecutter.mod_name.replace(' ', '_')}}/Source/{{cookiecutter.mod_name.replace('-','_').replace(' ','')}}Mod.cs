@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using Verse;
 using RimWorld;
@@ -19,6 +19,7 @@ public class {{ cookiecutter.mod_nam.replace('-','_').replace(' ','') }}Mod : Mo
     {
         Listing_Standard listingStandard = new();
         listingStandard.Begin(inRect);
+        Widgets.CheckboxLabeled(inRect, "{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Settings.Debug".TranslateSimple(), ref settings.debugLog);
         // Your code here...
         listingStandard.End();
         base.DoSettingsWindowContents(inRect);

@@ -1,8 +1,16 @@
 {
   "files.associations": {
-    "*.cs": "jinja",
-    "*.csproj": "jinja",
-    "*.sln": "jinja",
-    "*.xml": "jinja",
+    "**/RimWorld-*/**/*.cs": "jinja",
+    "**/RimWorld-*/**/*.csproj": "jinja",
+    "**/RimWorld-*/**/*.sln": "jinja",
+    "**/RimWorld-*/**/*.xml": "jinja",
+    "**/RimWorld-*/**/*.xml*": "jinja",
+    "**/RimWorld-*/**/*.txt": "jinja",
+    "**/licenses/*": "jinja",
+    "**/Assemblies/*": "jinja",
+    "**/RimWorld-*/**/*.txt*": "jinja",
+    "**/RimWorld-*/**/*.md": "jinja",
+    "**/RimWorld-*/**/LICENSE": "jinja",
+    "**/RimWorld-*/**/*.meta*": "jinja",
   }
 }

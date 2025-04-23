@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageInfo>
+  <friendlyNameNative>{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}Lang</friendlyNameNative>
+  <friendlyNameEnglish>{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }} Language</friendlyNameEnglish>
+  <canBeTiny>true</canBeTiny>
+  <languageWorkerClass>LanguageWorker_{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}Lang</languageWorkerClass>
+  <credits>
+  </credits>
+</LanguageInfo>

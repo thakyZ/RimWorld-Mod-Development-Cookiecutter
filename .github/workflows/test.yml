@@ -41,8 +41,8 @@ jobs:
       - name: Test
         shell: pwsh
         run: |
-          $JsonFile = (Get-Content -LiteralPath './.github/tests/replay.json' | ConvertFrom-Json -Depth 100 -AsHashtable);
-          cookiecutter cookiecutter/ --replay-file './.github/tests/replay.json';
+          $JsonFile = (Get-Content -LiteralPath './cookiecutter/.github/tests/replay.json' | ConvertFrom-Json -Depth 100 -AsHashtable);
+          cookiecutter cookiecutter/ --replay-file './cookiecutter/.github/tests/replay.json';
 
           If (-not (Test-Path -LiteralPath (Join-Path -Path $PWD -ChildPath "RimWorld-$($JsonFile.cookiecutter.mod_name -replace ' ','_')"))) {
             Throw "Failed to create cookiecutter template with name $($JsonFile.cookiecutter.mod_name)";

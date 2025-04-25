@@ -13,12 +13,12 @@ public class {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}Mod : M
   /// <summary>
   /// Gets an instance of the mod's settings.
   /// </summary>
-  public static {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}Settings Settings { get; private set; }
+  public static {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}Settings? Settings { get; private set; }
 
   /// <summary>
   /// Gets an instance of the mod's constructed <see cref="Harmony" /> patcher.
   /// </summary>
-  internal static Harmony Harmony { get; private set; }
+  internal static Harmony? Harmony { get; private set; }
 
   /// <summary>
   /// Initializes a new instance of the <see cref="{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}Mod" /> class.",

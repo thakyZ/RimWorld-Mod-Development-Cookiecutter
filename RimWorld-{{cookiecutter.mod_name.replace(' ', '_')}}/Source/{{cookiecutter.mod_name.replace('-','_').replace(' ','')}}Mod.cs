@@ -34,6 +34,9 @@ public class {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}Mod : M
   /// </summary>
   /// <param name="inRect">A <see cref="Rect" /> that determines the bounds of the settings window.</param>
   public override void DoSettingsWindowContents(Rect inRect) {
+    if (Settings is null) {
+      return;
+    }
     Listing_Standard listingStandard = new();
     listingStandard.Begin(inRect);
     Widgets.CheckboxLabeled(inRect, "{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Settings.Debug"

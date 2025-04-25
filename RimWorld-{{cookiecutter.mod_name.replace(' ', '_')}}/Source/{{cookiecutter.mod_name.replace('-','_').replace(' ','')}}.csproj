@@ -14,6 +14,15 @@
     <NoWarn>$(NoWarn);MSB3052</NoWarn>
   </PropertyGroup>
 
+  <PropertyGroup Label="Define Constants">
+    <DefineConstants Condition=" '$(Configuration)' == '1.5' ">$(DefineConstants);RIMWORLD_15;RIMWORLD_10_OR_HIGHER;RIMWORLD_11_OR_HIGHER;RIMWORLD_12_OR_HIGHER;RIMWORLD_13_OR_HIGHER;RIMWORLD_14_OR_HIGHER;RIMWORLD_15_OR_HIGHER;RIMWORLD_15_OR_LOWER</DefineConstants>
+    <DefineConstants Condition=" '$(Configuration)' == '1.4' ">$(DefineConstants);RIMWORLD_14;RIMWORLD_10_OR_HIGHER;RIMWORLD_11_OR_HIGHER;RIMWORLD_12_OR_HIGHER;RIMWORLD_13_OR_HIGHER;RIMWORLD_14_OR_HIGHER;RIMWORLD_14_OR_LOWER;RIMWORLD_15_OR_LOWER</DefineConstants>
+    <DefineConstants Condition=" '$(Configuration)' == '1.3' ">$(DefineConstants);RIMWORLD_13;RIMWORLD_10_OR_HIGHER;RIMWORLD_11_OR_HIGHER;RIMWORLD_12_OR_HIGHER;RIMWORLD_13_OR_HIGHER;RIMWORLD_13_OR_LOWER;RIMWORLD_14_OR_LOWER;RIMWORLD_15_OR_LOWER</DefineConstants>
+    <DefineConstants Condition=" '$(Configuration)' == '1.2' ">$(DefineConstants);RIMWORLD_12;RIMWORLD_10_OR_HIGHER;RIMWORLD_11_OR_HIGHER;RIMWORLD_12_OR_HIGHER;RIMWORLD_12_OR_LOWER;RIMWORLD_13_OR_LOWER;RIMWORLD_14_OR_LOWER;RIMWORLD_15_OR_LOWER</DefineConstants>
+    <DefineConstants Condition=" '$(Configuration)' == '1.1' ">$(DefineConstants);RIMWORLD_11;RIMWORLD_10_OR_HIGHER;RIMWORLD_11_OR_HIGHER;RIMWORLD_11_OR_LOWER;RIMWORLD_12_OR_LOWER;RIMWORLD_13_OR_LOWER;RIMWORLD_14_OR_LOWER;RIMWORLD_15_OR_LOWER</DefineConstants>
+    <DefineConstants Condition=" '$(Configuration)' == '1.0' ">$(DefineConstants);RIMWORLD_10;RIMWORLD_10_OR_HIGHER;RIMWORLD_11_OR_LOWER;RIMWORLD_12_OR_LOWER;RIMWORLD_13_OR_LOWER;RIMWORLD_14_OR_LOWER;RIMWORLD_15_OR_LOWER</DefineConstants>
+  </PropertyGroup>
+
   <PropertyGroup>
     <AssemblyTitle>{{ cookiecutter.mod_name }}</AssemblyTitle>
     <Description>{{ cookiecutter.in_game_description.replace('\n', '\\n') }}</Description>

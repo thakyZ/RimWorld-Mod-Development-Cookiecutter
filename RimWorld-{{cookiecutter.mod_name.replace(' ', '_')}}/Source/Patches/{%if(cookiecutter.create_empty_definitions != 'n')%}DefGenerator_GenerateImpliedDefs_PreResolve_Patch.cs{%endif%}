@@ -8,16 +8,28 @@ using {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Generators;
 namespace {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Patches;
 
 /// <summary>
+#if RIMWORLD_12_OR_LOWER
+/// A <see cref="Harmony" /> patch for the method <see cref="DefGenerator.GenerateImpliedDefs_PreResolve()" />.
+#else
 /// A <see cref="Harmony" /> patch for the method <see cref="DefGenerator.GenerateImpliedDefs_PreResolve(bool)" />.
+#endif
 /// </summary>
 [HarmonyPatch(typeof(DefGenerator), nameof(DefGenerator.GenerateImpliedDefs_PreResolve))]
 public static class DefGenerator_GenerateImpliedDefs_PreResolve_Patch {
   /// <summary>
   /// A <see cref="Harmony" /> postfix patch.
   /// </summary>
-  public static void Postfix(bool hotReload) {
+  public static void Postfix(
+#if RIMWORLD_13_OR_HIGHER
+    bool hotReload
+#endif
+  ) {
     foreach (ThingCategoryDef thingCategoryDef in ThingCategoryDefGenerator_AThing.ImpliedThingCategoryDefs(hotReload)) {
+#if RIMWORLD_12_OR_LOWER
+      DefGenerator.AddImpliedDef(thingCategoryDef);
+#else
       DefGenerator.AddImpliedDef(thingCategoryDef, hotReload);
+#endif
     }
   }
 }

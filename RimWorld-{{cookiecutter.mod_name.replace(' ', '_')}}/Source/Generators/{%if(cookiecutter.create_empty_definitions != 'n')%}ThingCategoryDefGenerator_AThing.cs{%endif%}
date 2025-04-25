@@ -24,7 +24,13 @@ public static class ThingCategoryDefGenerator_AThing {
   public static IEnumerable<ThingCategoryDef> ImpliedThingCategoryDefs(bool hotReload = false) {
     _createdDefs.Clear();
     foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs) {
-      if (thingDef.HasComp<ThingComp>() && thingDef.thingCategories.Count > 0) {
+    if (
+#if RIMWORLD_14_OR_LOWER
+      thingDef.HasComp(typeof(ThingComp))
+#else
+      thingDef.HasComp<ThingComp>()
+#endif
+      && thingDef.thingCategories.Count > 0) {
         foreach (ThingCategoryDef thingDefCategory in thingDef.thingCategories.Where((ThingCategoryDef thingCategoryDef) => !thingCategoryDef.defName.EndsWith("_athing") && thingCategoryDef.Parents.Contains(ThingCategoryDefOf.Root)).ToList()) {
           thingDef.thingCategories.Add(BaseThingCategoryDef(thingDefCategory, hotReload));
         }

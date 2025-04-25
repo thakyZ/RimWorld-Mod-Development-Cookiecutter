@@ -7,13 +7,15 @@ from logging import INFO, basicConfig, getLogger
 from os.path import realpath, curdir
 from shutil import copytree, rmtree
 from pathlib import Path
-from subprocess import run
+from subprocess import run, check_output
 
 basicConfig(level=INFO)
 logger = getLogger("post_gen_project")
 
 PROJECT_DIRECTORY: str = realpath(curdir)
 ALL_TEMP_FOLDERS: list[str] = ["licenses", "load_folder_template"]
+MOD_NAME_RAW: str = "{{ cookiecutter.mod_name }}"
+MOD_NAME: str = "{{ cookiecutter.mod_name.replace(' ', '_') }}"
 ALL_LOAD_FOLDERS: list[str] = "{{ cookiecutter.supported_versions }}".split(',')
 GIT_REPOSITORY_URL: str = "{{ cookiecutter.git_repository_url }}"
 
@@ -52,43 +54,49 @@ if __name__ == "__main__":
         run(["git", "init", "-q"], check=True)
         run(["git", "checkout", "-b", "main"], check=True)
         run(["git", "add", "."], check=True)
-        run(["git", "commit", "-Ss", "-q", "-m", "initial commit"], check=True)
+        ret: list[str] = str(
+            check_output(" ".join(["git", "config", "user.signingkey"]), shell=True)
+        ).split('\\n')
+        if len(ret) >= 1 and ret[0] != '':
+            run(["git", "commit", "-Ss", "-q", "-m", "initial commit"], check=True)
+        else:
+            run(["git", "commit", "-q", "-m", "initial commit"], check=True)
     except Exception as error:  # pylint: disable=W0718
         logger.debug(error)
-        msg += """
+        msg += f"""
 Your mod template is ready!  Next steps:
 
 1. `cd` into your new directory and initialize a git repo
-   (this is also important for version control!)
+    (this is also important for version control!)
 
-     cd RimWorld-{{ cookiecutter.mod_name.replace(' ', '_') }}
-     git init -b main
-     git add .
-     git commit -m 'initial commit'"""
+    cd RimWorld-{MOD_NAME}
+    git init -b main
+    git add .
+    git commit -m 'initial commit'"""
     else:
         msg += """
 Your mod template is ready!  Next steps:
 
 1. `cd` into your new directory
 
-     cd {{ cookiecutter.mod_name }}"""
+    cd {MOD_NAME_RAW}"""
 
     if not GIT_REPOSITORY_URL.startswith("https://"):
         msg += """
-2. Create a github repository with the name 'RimWorld-{{ cookiecutter.mod_name.replace(' ', '_') }}':
-   {{ cookiecutter.git_repository_url }}.git
+2. Create a github repository with the name 'RimWorld-{MOD_NAME}':
+    {GIT_REPOSITORY_URL}.git
 
 3. Add your newly created github repo as a remote and push:
 
-     git remote add origin {{ cookiecutter.git_repository_url }}.git
-     git push -u origin main
+    git remote add origin {GIT_REPOSITORY_URL}.git
+    git push -u origin main
 
 4. The following default URLs have been added to `setup.cfg`:
 
-    Bug Tracker = {{ cookiecutter.git_repository_url }}/issues
-    Documentation = {{ cookiecutter.git_repository_url }}#README.md
-    Source Code = {{ cookiecutter.git_repository_url }}
-    User Support = {{ cookiecutter.git_repository_url }}/issues
+    Bug Tracker = {GIT_REPOSITORY_URL}/issues
+    Documentation = {GIT_REPOSITORY_URL}#README.md
+    Source Code = {GIT_REPOSITORY_URL}
+    User Support = {GIT_REPOSITORY_URL}/issues
 
     These URLs will be displayed on your plugin's napari hub page.
     You may wish to change these before publishing your plugin!"""
@@ -96,20 +104,20 @@ Your mod template is ready!  Next steps:
     else:
         msg += """
 2. Create a github repository for your plugin:
-   https://github.com/new
+    https://github.com/new
 
 3. Add your newly created github repo as a remote and push:
 
-     git remote add origin https://github.com/your-repo-username/your-repo-name.git
-     git push -u origin main
+    git remote add origin https://github.com/your-repo-username/your-repo-name.git
+    git push -u origin main
 
-   Don't forget to add this url to setup.cfg!
+    Don't forget to add this url to setup.cfg!
 
-     [metadata]
-     url = https://github.com/your-repo-username/your-repo-name.git
+    [metadata]
+    url = https://github.com/your-repo-username/your-repo-name.git
 
 4. Consider adding additional links for documentation and user support to setup.cfg
-   using the project_urls key e.g.
+    using the project_urls key e.g.
 
     [metadata]
     project_urls =

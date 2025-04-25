@@ -29,11 +29,11 @@ public static class DefGenerator_GenerateImpliedDefs_PreResolve_Patch {
       hotReload
 #endif
     )) {
-#if RIMWORLD_14_OR_LOWER
-      DefGenerator.AddImpliedDef(thingCategoryDef);
-#else
-      DefGenerator.AddImpliedDef(thingCategoryDef, hotReload);
+      DefGenerator.AddImpliedDef(thingCategoryDef
+#if RIMWORLD_15_OR_HIGHERx
+        , hotReload
 #endif
+        );
     }
   }
 }

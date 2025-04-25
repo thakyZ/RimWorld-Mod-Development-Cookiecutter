@@ -67,7 +67,11 @@ public static class ThingCategoryDefGenerator_AThing {
     }
 
     string defName = baseDef.defName + "_athing";
-    ThingCategoryDef thingCategoryDef = hotReload ? (DefDatabase<ThingCategoryDef>.GetNamed(defName, false) ?? new ThingCategoryDef()) : new ThingCategoryDef();
+    ThingCategoryDef thingCategoryDef =
+#if RIMWORLD_15_OR_HIGHER
+      hotReload ? (DefDatabase<ThingCategoryDef>.GetNamed(defName, false) ?? new ThingCategoryDef())
+#endif
+      new ThingCategoryDef();
     thingCategoryDef.defName = defName;
     thingCategoryDef.label = baseDef.label;
     thingCategoryDef.parent = (baseDef.parent == ThingCategoryDefOf.Root || baseDef.parent is null) ? {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}DefOf.AThing : BaseThingCategoryDef(baseDef.parent);

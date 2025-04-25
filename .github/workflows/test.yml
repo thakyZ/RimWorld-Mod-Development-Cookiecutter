@@ -23,6 +23,11 @@ jobs:
         with:
           path: cookiecutter
 
+      - name: Install python dependencies
+        if: ${{ matrix.platform == 'windows-latest' }}
+        shell: pwsh
+        run: git config --system core.longpaths true
+
       - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:

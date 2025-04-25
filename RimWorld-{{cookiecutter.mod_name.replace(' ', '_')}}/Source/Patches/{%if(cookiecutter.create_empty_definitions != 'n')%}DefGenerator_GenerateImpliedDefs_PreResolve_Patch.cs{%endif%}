@@ -4,15 +4,20 @@ using HarmonyLib;
 using Verse;
 using RimWorld;
 using {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Generators;
+
 namespace {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Patches;
+
+/// <summary>
+/// A <see cref="Harmony" /> patch for the method <see cref="DefGenerator.GenerateImpliedDefs_PreResolve(bool)" />.
+/// </summary>
 [HarmonyPatch(typeof(DefGenerator), nameof(DefGenerator.GenerateImpliedDefs_PreResolve))]
-public static class DefGenerator_GenerateImpliedDefs_PreResolve_Patch
-{
-    public static void Postfix(bool hotReload)
-    {
-        foreach (ThingCategoryDef thingCategoryDef in ThingCategoryDefGenerator_AThing.ImpliedThingCategoryDefs(hotReload))
-        {
-            DefGenerator.AddImpliedDef(thingCategoryDef, hotReload);
-        }
+public static class DefGenerator_GenerateImpliedDefs_PreResolve_Patch {
+  /// <summary>
+  /// A <see cref="Harmony" /> postfix patch.
+  /// </summary>
+  public static void Postfix(bool hotReload) {
+    foreach (ThingCategoryDef thingCategoryDef in ThingCategoryDefGenerator_AThing.ImpliedThingCategoryDefs(hotReload)) {
+      DefGenerator.AddImpliedDef(thingCategoryDef, hotReload);
     }
+  }
 }

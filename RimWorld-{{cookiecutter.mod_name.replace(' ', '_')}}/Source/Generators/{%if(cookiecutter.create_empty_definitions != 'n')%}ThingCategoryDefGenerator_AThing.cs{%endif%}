@@ -3,44 +3,54 @@ using System.Linq;
 using HarmonyLib;
 using Verse;
 using RimWorld;
+
 // Ignore Spelling: Defs
+
 namespace {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Generators;
-public static class ThingCategoryDefGenerator_AThing
-{
-    private static readonly Dictionary<ThingCategoryDef, ThingCategoryDef> _createdDefs = [];
-    public static IEnumerable<ThingCategoryDef> ImpliedThingCategoryDefs(bool hotReload = false)
-    {
-        _createdDefs.Clear();
-        foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs)
-        {
-            if (thingDef.HasComp<CompThing>() && thingDef.thingCategories.Count > 0)
-            {
-                foreach (ThingCategoryDef thingDefCategory in thingDef.thingCategories.Where((ThingCategoryDef thingCategoryDef) => !thingCategoryDef.defName.EndsWith("_athing") && thingCategoryDef.Parents.Contains(ThingCategoryDefOf.Root)).ToList())
-                {
-                    thingDef.thingCategories.Add(BaseThingCategoryDef(thingDefCategory, hotReload));
-                }
-            }
-        }
 
-        foreach (ThingCategoryDef thingCategoryDef in _createdDefs.Values)
-        {
-            yield return thingCategoryDef;
+/// <summary>
+/// A definition generator for a custom <see cref="ThingCategoryDef" />.
+/// </summary>
+public static class ThingCategoryDefGenerator_AThing {
+  /// <summary>
+  /// A cached collection of the created custom <see cref="ThingCategoryDef" />s.
+  /// </summary>
+  private static readonly Dictionary<ThingCategoryDef, ThingCategoryDef> _createdDefs = [];
+
+  /// <summary>
+  /// The wrapper for creating all the custom <see cref="ThingCategoryDef" />s.
+  /// </summary>
+  /// <returns>A collection of the newly created <see cref="ThingCategoryDef" />s.</returns>
+  public static IEnumerable<ThingCategoryDef> ImpliedThingCategoryDefs(bool hotReload = false) {
+    _createdDefs.Clear();
+    foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs) {
+      if (thingDef.HasComp<CompThing>() && thingDef.thingCategories.Count > 0) {
+        foreach (ThingCategoryDef thingDefCategory in thingDef.thingCategories.Where((ThingCategoryDef thingCategoryDef) => !thingCategoryDef.defName.EndsWith("_athing") && thingCategoryDef.Parents.Contains(ThingCategoryDefOf.Root)).ToList()) {
+          thingDef.thingCategories.Add(BaseThingCategoryDef(thingDefCategory, hotReload));
         }
+      }
     }
 
-    public static ThingCategoryDef BaseThingCategoryDef(ThingCategoryDef baseDef, bool hotReload = false)
-    {
-        if (_createdDefs.TryGetValue(baseDef, out ThingCategoryDef existingDef))
-        {
-            return existingDef;
-        }
-
-        string defName = baseDef.defName + "_athing";
-        ThingCategoryDef thingCategoryDef = hotReload ? (DefDatabase<ThingCategoryDef>.GetNamed(defName, false) ?? new ThingCategoryDef()) : new ThingCategoryDef();
-        thingCategoryDef.defName = defName;
-        thingCategoryDef.label = baseDef.label;
-        thingCategoryDef.parent = (baseDef.parent == ThingCategoryDefOf.Root || baseDef.parent is null) ? {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}DefOf.Perishables : BaseThingCategoryDef(baseDef.parent);
-        _createdDefs.Add(baseDef, thingCategoryDef);
-        return thingCategoryDef;
+    foreach (ThingCategoryDef thingCategoryDef in _createdDefs.Values) {
+      yield return thingCategoryDef;
     }
+  }
+
+  /// <summary>
+  /// The wrapper for creating each individual custom <see cref="ThingCategoryDef" />.
+  /// </summary>
+  /// <returns>An instance of a newly created <see cref="ThingCategoryDef" />.</returns>
+  public static ThingCategoryDef BaseThingCategoryDef(ThingCategoryDef baseDef, bool hotReload = false)  {
+    if (_createdDefs.TryGetValue(baseDef, out ThingCategoryDef existingDef)) {
+      return existingDef;
+    }
+
+    string defName = baseDef.defName + "_athing";
+    ThingCategoryDef thingCategoryDef = hotReload ? (DefDatabase<ThingCategoryDef>.GetNamed(defName, false) ?? new ThingCategoryDef()) : new ThingCategoryDef();
+    thingCategoryDef.defName = defName;
+    thingCategoryDef.label = baseDef.label;
+    thingCategoryDef.parent = (baseDef.parent == ThingCategoryDefOf.Root || baseDef.parent is null) ? {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}DefOf.Perishables : BaseThingCategoryDef(baseDef.parent);
+    _createdDefs.Add(baseDef, thingCategoryDef);
+    return thingCategoryDef;
+  }
 }

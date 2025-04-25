@@ -24,9 +24,9 @@ public class {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}Mod : M
   /// Initializes a new instance of the <see cref="{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}Mod" /> class.",
   /// </summary>
   public {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}Mod(ModContentPack content) : base(content) {
-    settings = GetSettings<{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}Settings>();
-    harmony = new("{{ cookiecutter.package_id }}");
-    harmony.PatchAll();
+    Settings = GetSettings<{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}Settings>();
+    Harmony = new("{{ cookiecutter.package_id }}");
+    Harmony.PatchAll();
   }
 
   /// <summary>
@@ -36,7 +36,7 @@ public class {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}Mod : M
   public override void DoSettingsWindowContents(Rect inRect) {
     Listing_Standard listingStandard = new();
     listingStandard.Begin(inRect);
-    Widgets.CheckboxLabeled(inRect, "{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Settings.Debug".TranslateSimple(), ref settings.debugLog);
+    Widgets.CheckboxLabeled(inRect, "{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Settings.Debug".TranslateSimple(), ref Settings.debugLog);
     // Your code here...
     listingStandard.End();
     base.DoSettingsWindowContents(inRect);

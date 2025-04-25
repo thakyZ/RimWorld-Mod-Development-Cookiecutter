@@ -69,7 +69,7 @@ public static class ThingCategoryDefGenerator_AThing {
     string defName = baseDef.defName + "_athing";
     ThingCategoryDef thingCategoryDef =
 #if RIMWORLD_15_OR_HIGHER
-      hotReload ? (DefDatabase<ThingCategoryDef>.GetNamed(defName, false) ?? new ThingCategoryDef())
+      hotReload ? (DefDatabase<ThingCategoryDef>.GetNamed(defName, false) ?? new ThingCategoryDef()) :
 #endif
       new ThingCategoryDef();
     thingCategoryDef.defName = defName;

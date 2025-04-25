@@ -24,7 +24,7 @@ public static class ThingCategoryDefGenerator_AThing {
   public static IEnumerable<ThingCategoryDef> ImpliedThingCategoryDefs(bool hotReload = false) {
     _createdDefs.Clear();
     foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs) {
-      if (thingDef.HasComp<CompThing>() && thingDef.thingCategories.Count > 0) {
+      if (thingDef.HasComp<ThingComp>() && thingDef.thingCategories.Count > 0) {
         foreach (ThingCategoryDef thingDefCategory in thingDef.thingCategories.Where((ThingCategoryDef thingCategoryDef) => !thingCategoryDef.defName.EndsWith("_athing") && thingCategoryDef.Parents.Contains(ThingCategoryDefOf.Root)).ToList()) {
           thingDef.thingCategories.Add(BaseThingCategoryDef(thingDefCategory, hotReload));
         }
@@ -49,7 +49,7 @@ public static class ThingCategoryDefGenerator_AThing {
     ThingCategoryDef thingCategoryDef = hotReload ? (DefDatabase<ThingCategoryDef>.GetNamed(defName, false) ?? new ThingCategoryDef()) : new ThingCategoryDef();
     thingCategoryDef.defName = defName;
     thingCategoryDef.label = baseDef.label;
-    thingCategoryDef.parent = (baseDef.parent == ThingCategoryDefOf.Root || baseDef.parent is null) ? {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}DefOf.Perishables : BaseThingCategoryDef(baseDef.parent);
+    thingCategoryDef.parent = (baseDef.parent == ThingCategoryDefOf.Root || baseDef.parent is null) ? {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}DefOf.AThing : BaseThingCategoryDef(baseDef.parent);
     _createdDefs.Add(baseDef, thingCategoryDef);
     return thingCategoryDef;
   }

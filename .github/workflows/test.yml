@@ -19,14 +19,14 @@ jobs:
         platform: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-      - uses: actions/checkout@v4
-        with:
-          path: cookiecutter
-
       - name: Install python dependencies
         if: ${{ matrix.platform == 'windows-latest' }}
         shell: pwsh
         run: git config --system core.longpaths true
+
+      - uses: actions/checkout@v4
+        with:
+          path: cookiecutter
 
       - name: Set up Python 3.12
         uses: actions/setup-python@v5

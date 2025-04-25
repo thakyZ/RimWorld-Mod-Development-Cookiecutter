@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">{{ cookiecutter.supported_versions.split(',').last() }}</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">{{ cookiecutter.supported_versions.split(',')[-1] }}</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
     <TargetFramework>net481</TargetFramework>
     <RootNamespace>{{ cookiecutter.mod_name.replace('-','_').replace(' ', '') }}</RootNamespace>

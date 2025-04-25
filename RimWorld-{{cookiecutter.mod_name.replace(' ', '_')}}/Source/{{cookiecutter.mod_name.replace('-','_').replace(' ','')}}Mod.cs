@@ -36,7 +36,13 @@ public class {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}Mod : M
   public override void DoSettingsWindowContents(Rect inRect) {
     Listing_Standard listingStandard = new();
     listingStandard.Begin(inRect);
-    Widgets.CheckboxLabeled(inRect, "{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Settings.Debug".TranslateSimple(), ref Settings.debugLog);
+    Widgets.CheckboxLabeled(inRect, "{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Settings.Debug"
+#if RIMWORLD_11_OR_HIGHER
+      .TranslateSimple()
+#else
+      .Translate()
+#endif
+    , ref Settings.debugLog);
     // Your code here...
     listingStandard.End();
     base.DoSettingsWindowContents(inRect);
@@ -46,7 +52,12 @@ public class {{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}Mod : M
   /// Gets the title <see langword="string" /> of settings window.
   /// </summary>
   /// <returns>A <see langword="string" /> representing the title of the settings window.</returns>
-  public override string SettingsCategory() => "{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Settings.Title".Translate();
+  public override string SettingsCategory() => "{{ cookiecutter.mod_name.replace('-','_').replace(' ','') }}.Settings.Title"
+#if RIMWORLD_11_OR_HIGHER
+      .TranslateSimple();
+#else
+      .Translate();
+#endif
 }
 
 /// <summary>
